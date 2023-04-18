@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Cart</string>
+    <string name="image_name">"Product Name: "</string>
+    <string name="price">Price</string>
+</resources>
