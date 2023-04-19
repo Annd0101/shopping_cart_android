@@ -1,4 +1,4 @@
-package hanu.a2_2001040001.database;
+package hanu.a2_2001040001.MyCart.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteStatement;
 
 import java.util.List;
 
-import hanu.a2_2001040001.models.Product;
+import hanu.a2_2001040001.MyCart.models.Product;
+
 
 public class ProductManager {
     private static ProductManager instance;

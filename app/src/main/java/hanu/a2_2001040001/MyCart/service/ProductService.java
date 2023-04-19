@@ -1,11 +1,12 @@
-package hanu.a2_2001040001.service;
+package hanu.a2_2001040001.MyCart.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-import hanu.a2_2001040001.models.Product;
+;
+import hanu.a2_2001040001.MyCart.models.Product;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

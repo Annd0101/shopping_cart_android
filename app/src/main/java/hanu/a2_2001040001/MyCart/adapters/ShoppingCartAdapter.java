@@ -1,4 +1,4 @@
-package hanu.a2_2001040001.adapters;
+package hanu.a2_2001040001.MyCart.adapters;
 
 
 import android.content.Context;
@@ -23,10 +23,11 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import hanu.a2_2001040001.CartActivity;
+import hanu.a2_2001040001.MyCart.CartActivity;
+import hanu.a2_2001040001.MyCart.database.ProductManager;
+import hanu.a2_2001040001.MyCart.models.Product;
 import hanu.a2_2001040001.R;
-import hanu.a2_2001040001.database.ProductManager;
-import hanu.a2_2001040001.models.Product;
+
 
 public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapter.MyCartHolder> {
 

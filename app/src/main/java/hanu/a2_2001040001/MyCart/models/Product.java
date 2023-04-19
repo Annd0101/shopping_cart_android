@@ -1,4 +1,4 @@
-package hanu.a2_2001040001.models;
+package hanu.a2_2001040001.MyCart.models;
 
 import java.util.Objects;
 

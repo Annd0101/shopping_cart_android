@@ -1,4 +1,4 @@
-package hanu.a2_2001040001.database;
+package hanu.a2_2001040001.MyCart.database;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
@@ -6,7 +6,8 @@ import android.database.CursorWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import hanu.a2_2001040001.models.Product;
+import hanu.a2_2001040001.MyCart.models.Product;
+
 
 public class ProductCursorWrapper extends CursorWrapper {
     public ProductCursorWrapper(Cursor cursor) {

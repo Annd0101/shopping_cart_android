@@ -1,26 +1,24 @@
-package hanu.a2_2001040001;
+package hanu.a2_2001040001.MyCart;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import hanu.a2_2001040001.adapters.RecyclerViewAdapter;
-import hanu.a2_2001040001.models.Product;
-import hanu.a2_2001040001.service.ProductService;
+import hanu.a2_2001040001.MyCart.adapters.RecyclerViewAdapter;
+import hanu.a2_2001040001.MyCart.models.Product;
+import hanu.a2_2001040001.MyCart.service.ProductService;
+import hanu.a2_2001040001.R;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -1,4 +1,4 @@
-package hanu.a2_2001040001;
+package hanu.a2_2001040001.MyCart;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import hanu.a2_2001040001.adapters.ShoppingCartAdapter;
-import hanu.a2_2001040001.database.ProductManager;
-import hanu.a2_2001040001.models.Product;
+import hanu.a2_2001040001.MyCart.adapters.ShoppingCartAdapter;
+import hanu.a2_2001040001.MyCart.database.ProductManager;
+import hanu.a2_2001040001.MyCart.models.Product;
+import hanu.a2_2001040001.R;
+
 
 public class CartActivity extends AppCompatActivity {
     ShoppingCartAdapter shoppingCartAdapter;
