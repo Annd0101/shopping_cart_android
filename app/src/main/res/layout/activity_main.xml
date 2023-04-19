@@ -21,17 +21,6 @@
         android:background="@drawable/searchbar"
         android:layout_marginTop="20dp"
         >
-
-        <ImageButton
-            android:id="@+id/search_button"
-            android:layout_width="45dp"
-            android:layout_height="40dp"
-            android:src="@drawable/baseline_search_24"
-            android:layout_marginLeft="-50dp"
-            android:layout_marginTop="3dp"
-            android:background="@color/white">
-
-        </ImageButton>
     </SearchView>
 
     <androidx.recyclerview.widget.RecyclerView

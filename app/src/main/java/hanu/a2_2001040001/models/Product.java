@@ -1,13 +1,16 @@
 package hanu.a2_2001040001.models;
 
+import java.util.Objects;
+
 public class Product {
-    private Integer id;
+    private int quantity;
+    private Long id;
     private String thumbnail;
     private String name;
     private String category;
     private Integer unitPrice;
 
-    public Product(Integer id, String thumbnail, String name, String category, Integer price) {
+    public Product(long id, String thumbnail, String name, String category, Integer unitPrice) {
         this.id = id;
         this.thumbnail = thumbnail;
         this.name = name;
@@ -15,11 +18,21 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
-    public Integer getId() {
+    public Product(long id, String thumbnail, String name, String category, int unitPrice, int quantity) {
+        this.id = id;
+        this.thumbnail = thumbnail;
+        this.name = name;
+        this.category = category;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,7 +64,27 @@ public class Product {
         return unitPrice;
     }
 
-    public void setPrice(Integer price) {
+    public void setUnitPrice(Integer unitPrice) {
         this.unitPrice = unitPrice;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return quantity == product.quantity && Objects.equals(id, product.id) && Objects.equals(thumbnail, product.thumbnail) && Objects.equals(name, product.name) && Objects.equals(category, product.category) && Objects.equals(unitPrice, product.unitPrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(quantity, id, thumbnail, name, category, unitPrice);
     }
 }

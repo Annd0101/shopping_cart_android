@@ -1,4 +1,4 @@
-package hanu.a2_2001040001;
+package hanu.a2_2001040001.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -2,4 +2,7 @@
     <string name="app_name">My Cart</string>
     <string name="image_name">"Product Name: "</string>
     <string name="price">Price</string>
+    <string name="my_cart">My Cart</string>
+    <string name="total">Total</string>
+    <string name="checkout">Checkout</string>
 </resources>
