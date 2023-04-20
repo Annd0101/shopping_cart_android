@@ -1,27 +1,37 @@
 package hanu.a2_2001040001.MyCart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.HandlerCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import hanu.a2_2001040001.MyCart.adapters.RecyclerViewAdapter;
 import hanu.a2_2001040001.MyCart.models.Product;
-import hanu.a2_2001040001.MyCart.service.ProductService;
 import hanu.a2_2001040001.R;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -30,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton search_button;
     private List<Product> mListProduct;
     private SearchView searchView;
-
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,18 +93,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void callApiGetProducts() {
-        ProductService.productService.getProducts().enqueue(new Callback<List<Product>>() {
+//        ProductService.productService.getProducts().enqueue(new Callback<List<Product>>() {
+//            @Override
+//            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+//                mListProduct = response.body();
+//                recyclerViewAdapter = new RecyclerViewAdapter(mListProduct);
+//                recyclerView.setAdapter(recyclerViewAdapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Product>> call, Throwable t) {
+//                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        handler = HandlerCompat.createAsync(Looper.getMainLooper());
+        Constants.executorService.execute(new Runnable() {
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                mListProduct = response.body();
-                recyclerViewAdapter = new RecyclerViewAdapter(mListProduct);
-                recyclerView.setAdapter(recyclerViewAdapter);
+            public void run() {
+                //load json
+                String json = loadJSON("https://hanu-congnv.github.io/mpr-cart-api/products.json");
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(json == null ){
+                            Toast.makeText(MainActivity.this, "Opps", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        try {
+                            JSONArray root = new JSONArray(json);
+                            int i;
+                            for(i = 0 ; i < root.length(); i++){
+                                JSONObject product = root.getJSONObject(i);
+                                Long id = product.getLong("id");
+                                String thumbnail = product.getString("thumbnail");
+                                String name  = product.getString("name");
+                                String category = product.getString("category");
+                                Integer unitPrice = product.getInt("unitPrice");
+                                mListProduct.add(new Product(id,thumbnail,name,category,unitPrice));
+                            }
+                            recyclerViewAdapter = new RecyclerViewAdapter(mListProduct);
+                            recyclerView.setAdapter(recyclerViewAdapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
 
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-            }
         });
     }
 
@@ -111,5 +156,28 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public String loadJSON(String link) {
+        URL url;
+        HttpURLConnection urlConnection;
+        try {
+            url = new URL(link);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.connect();
+            InputStream is = urlConnection.getInputStream();
+            Scanner sc = new Scanner(is);
+            StringBuilder result = new StringBuilder();
+            String line;
+            while(sc.hasNextLine()) {
+                line = sc.nextLine();
+                result.append(line);
+            }
+            return result.toString();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

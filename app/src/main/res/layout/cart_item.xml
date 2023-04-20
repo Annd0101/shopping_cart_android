@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="fitXY"
-                        android:src="@drawable/baseline_remove_24"
+                        android:src="@drawable/baseline_remove_circle_outline_24"
                         android:background="@color/white"/>
 
                 </LinearLayout>
